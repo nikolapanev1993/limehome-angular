@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "limehome-app"
+    }
+  },
+  "defaultProject": "limehome-app",
+  "cli": {
+    "analytics": false
+  }
 }
