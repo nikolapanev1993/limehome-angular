@@ -1,0 +1,11 @@
+.scrollmenu {
+  background-color: transparent;
+  overflow: auto;
+  overflow-y: hidden;
+  bottom: 250px;
+  z-index: 2;
+  width: 100%;
+  position: relative;
+  max-height: 260px;
+  display: flex;
+}
