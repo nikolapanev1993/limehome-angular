@@ -22,11 +22,21 @@ export function hotelReducer(
       };
     case HotelsActions.SET_CURRENT_HOTEL:
       const updatedHotels = [...state.hotels];
-      updatedHotels.forEach((item, i) => {
-        if(item.place_id === action.payload.place_id){
-          updatedHotels.splice(1, 0, updatedHotels.splice(i, 1)[0]);  
-        }
-      })
+
+      if (screen.width < 360) {
+        updatedHotels.forEach((item, i) => {
+          if (item.place_id === action.payload.place_id) {
+            updatedHotels.splice(i, 1);
+            updatedHotels.unshift(item);
+          }
+        });
+      } else {
+        updatedHotels.forEach((item, i) => {
+          if (item.place_id === action.payload.place_id) {
+            updatedHotels.splice(1, 0, updatedHotels.splice(i, 1)[0]);
+          }
+        });
+      }
 
       return {
         hotels: updatedHotels,
