@@ -1,5 +1,5 @@
 <div class="center">
-  <div class="property-card">
+  <div class="property-card" [ngClass]="hotel.name === currHotel.name ? 'property-card-highlight' : 'property-card'">
     <div class="property-card-top">
       <img
         class="property-image"

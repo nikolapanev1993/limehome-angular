@@ -7,6 +7,8 @@ import * as HotelActions from '../hotels/store/hotel.actions';
 const homeIconDefault = 'assets/home-marker.png';
 const homeIconActive = 'assets/home-marker-active.png';
 
+let infowindow = new google.maps.InfoWindow();
+
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
@@ -74,13 +76,25 @@ export class MapComponent implements OnInit {
         this.onClickEvent(place);
       });
 
+      marker.addListener('mouseover', function () {
+        infowindow = new google.maps.InfoWindow({
+          content: place.name,
+        })
+        infowindow.open(map, this);
+      });
+
+      // assuming you also want to hide the infowindow when user mouses-out
+      marker.addListener('mouseout', function () {
+        infowindow.close();
+      });
+
       bounds.extend(place.geometry.location);
     }
     map.fitBounds(bounds);
   }
 
   onClickEvent(hotel: any) {
-    document.querySelector('.scrollmenu').scrollLeft = 0;
+    document.querySelector('.scrollmenu').scrollLeft = 1;
     this.store.dispatch(new HotelActions.SetCurrentHotel(hotel));
   }
 

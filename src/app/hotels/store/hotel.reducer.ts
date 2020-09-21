@@ -24,8 +24,7 @@ export function hotelReducer(
       const updatedHotels = [...state.hotels];
       updatedHotels.forEach((item, i) => {
         if(item.place_id === action.payload.place_id){
-          updatedHotels.splice(i, 1);
-          updatedHotels.unshift(item);
+          updatedHotels.splice(1, 0, updatedHotels.splice(i, 1)[0]);  
         }
       })
 
